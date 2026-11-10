@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Julio &amp; Asociados S.A. | Plataforma de datos</title>
+  <meta name="description" content="Explora y consume los datos de Julio &amp; Asociados S.A. mediante una API REST.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <nav class="brand">
+        <span class="logo">J&amp;A</span>
+        <span class="brand__name">Julio &amp; Asociados S.A.</span>
+        <span id="api-status" class="status status--wait" role="status">Conectando…</span>
+      </nav>
+      <h1>Plataforma de datos empresarial</h1>
+      <p class="lead">Explora la estructura y los registros de nuestras tablas y consúmelos desde cualquier aplicación, especialmente Python, mediante una API REST.</p>
+      <div class="stats">
+        <div><strong id="stat-tables">–</strong><span>tablas disponibles</span></div>
+        <div><strong id="stat-records">–</strong><span>registros en total</span></div>
+        <div><strong id="stat-api">–</strong><span>respuesta de la API</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-head">
+      <h2>Recursos disponibles</h2>
+      <p class="muted">Fuente: <code id="api-url"></code></p>
+    </div>
+    <div id="notice" class="notice" hidden></div>
+    <section id="cards" class="grid" aria-live="polite"></section>
+  </main>
+
+  <footer class="footer">© Julio &amp; Asociados S.A. · Empresa ficticia con fines de demostración</footer>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

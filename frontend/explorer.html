@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explorador | Julio &amp; Asociados S.A.</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/explorer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <header class="hero hero--small">
+    <div class="container">
+      <nav class="brand">
+        <a class="logo" href="index.html" aria-label="Ir al inicio">J&amp;A</a>
+        <a class="back" href="index.html">← Todas las tablas</a>
+        <span id="api-status" class="status status--wait" role="status">Conectando…</span>
+      </nav>
+      <h1 id="table-title">Cargando…</h1>
+      <p id="table-desc" class="lead"></p>
+      <div id="table-badges" class="badges"></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="notice" class="notice" hidden></div>
+    <div class="tabs" role="tablist" aria-label="Secciones de la tabla">
+      <button class="tab" role="tab" id="tab-metadata" aria-selected="true" aria-controls="panel-metadata" data-tab="metadata">Metadatos</button>
+      <button class="tab" role="tab" id="tab-data" aria-selected="false" aria-controls="panel-data" data-tab="data">Datos</button>
+    </div>
+    <section id="panel-metadata" role="tabpanel" aria-labelledby="tab-metadata"></section>
+    <section id="panel-data" role="tabpanel" aria-labelledby="tab-data" hidden></section>
+  </main>
+
+  <footer class="footer">© Julio &amp; Asociados S.A. · Empresa ficticia con fines de demostración</footer>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="js/explorer.js"></script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+/* =====================================================================
+   css/styles.css — Base, encabezado, estados y tarjetas.
+   Paleta: #290628 · #3B0086 · #736372 · #E4C5AF · #34D1BF
+   ===================================================================== */
+:root {
+    --morado-oscuro: #290628;
+    --morado: #3B0086;
+    --gris: #736372;
+    --beige: #E4C5AF;
+    --turquesa: #34D1BF;
+    --fondo: #FBF7F3;
+    --linea: #EBDCCF;
+    --radio: 16px;
+    --sombra: 0 6px 24px rgba(41, 6, 40, .08);
+    --fuente: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fuente);
+    color: var(--morado-oscuro);
+    background: var(--fondo);
+    line-height: 1.55;
+}
+
+a {
+    color: var(--morado);
+}
+
+code {
+    font-family: var(--mono);
+    font-size: .88em;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.35rem;
+    margin: 2rem 0 1rem;
+}
+
+.container {
+    width: min(1180px, 100% - 2.5rem);
+    margin-inline: auto;
+}
+
+.muted {
+    color: var(--gris);
+}
+
+.pad {
+    padding: 1.5rem;
+}
+
+/* ---- Encabezado ---- */
+.hero {
+    background: linear-gradient(135deg, var(--morado-oscuro) 0%, var(--morado) 100%);
+    color: #fff;
+    padding: 1.25rem 0 3rem;
+}
+
+.hero--small {
+    padding-bottom: 2rem;
+}
+
+.hero h1 {
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    margin: 2.5rem 0 .75rem;
+}
+
+.hero--small h1 {
+    margin-top: 1.5rem;
+    font-family: var(--mono);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+}
+
+.lead {
+    max-width: 62ch;
+    color: var(--beige);
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    flex-wrap: wrap;
+}
+
+.brand__name {
+    font-weight: 600;
+    letter-spacing: .02em;
+}
+
+.logo {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 12px;
+    background: var(--turquesa);
+    color: var(--morado-oscuro);
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform .25s;
+}
+
+.logo:hover {
+    transform: rotate(-6deg) scale(1.06);
+}
+
+.back {
+    color: var(--beige);
+    text-decoration: none;
+    transition: color .2s;
+}
+
+.back:hover {
+    color: var(--turquesa);
+}
+
+.status {
+    margin-left: auto;
+    padding: .3rem .8rem;
+    border-radius: 999px;
+    font-size: .82rem;
+    font-weight: 600;
+}
+
+.status::before {
+    content: "";
+    display: inline-block;
+    width: .55rem;
+    height: .55rem;
+    border-radius: 50%;
+    margin-right: .45rem;
+    background: currentColor;
+}
+
+.status--wait {
+    background: var(--beige);
+    color: var(--morado-oscuro);
+}
+
+.status--wait::before {
+    animation: pulso 1.2s infinite;
+}
+
+.status--ok {
+    background: var(--turquesa);
+    color: var(--morado-oscuro);
+}
+
+.status--error {
+    background: #FFC9C9;
+    color: #6B0F1A;
+}
+
+@keyframes pulso {
+    50% {
+        opacity: .25;
+    }
+}
+
+.stats {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.stats>div {
+    min-width: 9.5rem;
+    padding: .9rem 1.2rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .1);
+    backdrop-filter: blur(4px);
+}
+
+.stats strong {
+    display: block;
+    font-size: 1.6rem;
+    color: var(--turquesa);
+}
+
+.stats span {
+    font-size: .85rem;
+    color: var(--beige);
+}
+
+.badges {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+/* ---- Secciones y avisos ---- */
+.section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.section-head h2 {
+    margin: 0;
+}
+
+.notice {
+    margin: 1rem 0;
+    padding: .9rem 1.2rem;
+    border-radius: 12px;
+    background: #FFF3E6;
+    border: 1px solid var(--beige);
+}
+
+.notice--error {
+    background: #FFECEC;
+    border-color: #F5B5B5;
+}
+
+.notice p {
+    margin: 0 0 .6rem;
+}
+
+/* ---- Tarjetas ---- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+    padding: 1.4rem;
+    background: #fff;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    animation: aparece .5s both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--turquesa);
+    box-shadow: 0 14px 32px rgba(59, 0, 134, .16);
+}
+
+.card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .6rem;
+}
+
+.card h3 {
+    font-family: var(--mono);
+    font-size: 1.05rem;
+    word-break: break-word;
+}
+
+.card__desc {
+    margin: 0;
+    color: var(--gris);
+    flex: 1;
+    font-size: .95rem;
+}
+
+.card__meta {
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+}
+
+.card__meta dt {
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--gris);
+}
+
+.card__meta dd {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--morado);
+}
+
+@keyframes aparece {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+}
+
+.skeleton {
+    min-height: 210px;
+    background: linear-gradient(90deg, #fff 25%, #F3E8DE 50%, #fff 75%);
+    background-size: 200% 100%;
+    animation: brillo 1.4s infinite;
+}
+
+@keyframes brillo {
+    to {
+        background-position: -200% 0;
+    }
+}
+
+/* ---- Botones e insignias ---- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    padding: .6rem 1.1rem;
+    border: 0;
+    border-radius: 10px;
+    background: var(--morado);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    font-size: .92rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .2s, color .2s, transform .15s;
+}
+
+.btn:hover {
+    background: var(--turquesa);
+    color: var(--morado-oscuro);
+    transform: translateY(-1px);
+}
+
+.btn:focus-visible,
+.tab:focus-visible,
+.th-sort:focus-visible,
+summary:focus-visible {
+    outline: 3px solid var(--turquesa);
+    outline-offset: 2px;
+}
+
+.btn--ghost {
+    background: transparent;
+    color: var(--morado);
+    border: 1px solid var(--beige);
+    padding: .4rem .8rem;
+    font-size: .85rem;
+}
+
+.btn--disabled,
+.btn:disabled {
+    background: var(--beige);
+    color: var(--gris);
+    cursor: not-allowed;
+    transform: none;
+    opacity: .7;
+}
+
+.btn:disabled:hover {
+    background: var(--beige);
+    color: var(--gris);
+    transform: none;
+}
+
+.badge {
+    display: inline-block;
+    padding: .2rem .65rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .15);
+    color: var(--beige);
+    font-size: .78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.badge--ok {
+    background: rgba(52, 209, 191, .2);
+    color: #0E6B60;
+}
+
+.badge--warn {
+    background: #FFE7C7;
+    color: #7A4300;
+}
+
+/* ---- Pie y aviso emergente ---- */
+.footer {
+    margin-top: 4rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: .85rem;
+    color: var(--gris);
+    border-top: 1px solid var(--linea);
+}
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.5rem;
+    transform: translate(-50%, 20px);
+    padding: .7rem 1.3rem;
+    border-radius: 999px;
+    background: var(--morado-oscuro);
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s, transform .25s;
+    z-index: 50;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

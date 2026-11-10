@@ -1,0 +1,368 @@
+/* =====================================================================
+   css/explorer.css — Pestañas, tablas, visor JSON y código.
+   ===================================================================== */
+.tabs {
+    display: flex;
+    gap: .4rem;
+    margin: 1.5rem 0 1rem;
+    border-bottom: 2px solid var(--linea);
+}
+
+.tab {
+    padding: .8rem 1.5rem;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    background: none;
+    font: inherit;
+    font-weight: 600;
+    color: var(--gris);
+    cursor: pointer;
+    transition: color .2s, border-color .2s, background .2s;
+    border-radius: 10px 10px 0 0;
+}
+
+.tab:hover {
+    color: var(--morado);
+    background: rgba(228, 197, 175, .25);
+}
+
+.tab[aria-selected="true"] {
+    color: var(--morado);
+    border-bottom-color: var(--turquesa);
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    padding: 2rem;
+    color: var(--gris);
+}
+
+.spinner {
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 3px solid var(--beige);
+    border-top-color: var(--morado);
+    border-radius: 50%;
+    animation: gira .8s linear infinite;
+}
+
+@keyframes gira {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.stats-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.mini {
+    flex: 1 1 10rem;
+    padding: .9rem 1.1rem;
+    background: #fff;
+    border: 1px solid var(--linea);
+    border-radius: 12px;
+}
+
+.mini span {
+    display: block;
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--gris);
+}
+
+.mini strong {
+    font-size: 1.3rem;
+    color: var(--morado);
+    word-break: break-word;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    background: #fff;
+    border: 1px solid var(--linea);
+    border-radius: 12px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .9rem;
+}
+
+.data-table th {
+    position: sticky;
+    top: 0;
+    background: var(--morado-oscuro);
+    color: #fff;
+    text-align: left;
+    padding: .7rem .9rem;
+    white-space: nowrap;
+}
+
+.data-table td {
+    padding: .6rem .9rem;
+    border-top: 1px solid var(--linea);
+    vertical-align: top;
+}
+
+.data-table tbody tr {
+    transition: background .15s;
+}
+
+.data-table tbody tr:hover {
+    background: rgba(52, 209, 191, .1);
+}
+
+.th-sort {
+    background: none;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+}
+
+.th-sort:hover {
+    color: var(--turquesa);
+}
+
+.null {
+    color: var(--gris);
+    font-style: italic;
+    font-size: .8em;
+}
+
+.tag {
+    display: inline-block;
+    padding: .1rem .5rem;
+    border-radius: 6px;
+    font-size: .72rem;
+    font-weight: 700;
+    background: var(--beige);
+    color: var(--morado-oscuro);
+    white-space: nowrap;
+}
+
+.tag--pk {
+    background: var(--morado);
+    color: #fff;
+}
+
+.tag--fk {
+    background: var(--turquesa);
+}
+
+.tag--id {
+    background: var(--gris);
+    color: #fff;
+}
+
+.two-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.panel {
+    padding: 1rem 1.2rem;
+    background: #fff;
+    border: 1px solid var(--linea);
+    border-radius: 12px;
+}
+
+.panel h3 {
+    font-size: .95rem;
+    margin-bottom: .6rem;
+}
+
+.plain {
+    margin: 0;
+    padding-left: 1.1rem;
+}
+
+.plain li {
+    margin-bottom: .5rem;
+}
+
+.plain code {
+    display: block;
+    color: var(--gris);
+    font-size: .78rem;
+    overflow-wrap: anywhere;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.controls label {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--gris);
+}
+
+select {
+    padding: .5rem .7rem;
+    border: 1px solid var(--beige);
+    border-radius: 8px;
+    background: #fff;
+    font: inherit;
+    color: var(--morado-oscuro);
+}
+
+.pager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.endpoint {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    flex-wrap: wrap;
+    padding: .8rem 1rem;
+    background: var(--morado-oscuro);
+    color: #fff;
+    border-radius: 12px;
+}
+
+.endpoint code {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--turquesa);
+}
+
+.endpoint .btn--ghost {
+    color: var(--beige);
+    border-color: var(--gris);
+}
+
+.method {
+    padding: .15rem .55rem;
+    border-radius: 6px;
+    background: var(--turquesa);
+    color: var(--morado-oscuro);
+    font-weight: 800;
+    font-size: .75rem;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .6rem;
+    flex-wrap: wrap;
+    margin: 1.4rem 0 .6rem;
+}
+
+.toolbar h3 {
+    font-size: 1.05rem;
+}
+
+.toolbar__btns {
+    display: flex;
+    gap: .4rem;
+    flex-wrap: wrap;
+}
+
+/* ---- Visor JSON ---- */
+.json,
+.code {
+    background: #1B0B1C;
+    color: #EADFEA;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    font-family: var(--mono);
+    font-size: .84rem;
+    line-height: 1.6;
+    overflow: auto;
+    max-height: 520px;
+}
+
+.code {
+    margin: 0;
+    max-height: none;
+}
+
+.j-children {
+    margin-left: 1.3rem;
+    border-left: 1px dashed #4B2A4C;
+    padding-left: .8rem;
+}
+
+.j-close {
+    margin-left: 0;
+}
+
+details>summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+details>summary::-webkit-details-marker {
+    display: none;
+}
+
+details>summary::before {
+    content: "▸";
+    display: inline-block;
+    width: 1rem;
+    color: var(--turquesa);
+    transition: transform .15s;
+}
+
+details[open]>summary::before {
+    transform: rotate(90deg);
+}
+
+details[open]>summary .j-hint {
+    display: none;
+}
+
+.j-hint {
+    color: var(--gris);
+}
+
+.j-key {
+    color: var(--beige);
+}
+
+.j-str {
+    color: #8FE3D7;
+}
+
+.j-num {
+    color: #B99BFF;
+}
+
+.j-bool {
+    color: #FFB86B;
+}
+
+.j-null {
+    color: var(--gris);
+    font-style: italic;
+}
+
+.j-punc {
+    color: #A894A8;
+}

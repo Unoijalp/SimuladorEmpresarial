@@ -1,0 +1,79 @@
+/* =====================================================================
+   css/responsive.css — Adaptación a tablets, móviles y horizontal.
+   Las rejillas usan auto-fill, así que las tarjetas se reacomodan solas.
+   ===================================================================== */
+@media (max-width: 900px) {
+    .two-col {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        margin-top: 1.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: calc(100% - 1.5rem);
+    }
+
+    .brand__name {
+        display: none;
+    }
+
+    .stats>div {
+        flex: 1 1 100%;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tab {
+        flex: 1;
+        padding: .8rem .5rem;
+    }
+
+    .controls label,
+    select {
+        width: 100%;
+    }
+
+    .endpoint {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .toolbar__btns {
+        width: 100%;
+    }
+
+    .json,
+    .code {
+        font-size: .78rem;
+    }
+
+    .data-table {
+        font-size: .82rem;
+    }
+}
+
+/* Teléfonos en horizontal: poca altura, se reduce el encabezado. */
+@media (max-height: 480px) and (orientation: landscape) {
+    .hero {
+        padding-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+        margin: .8rem 0 .4rem;
+        font-size: 1.6rem;
+    }
+
+    .stats {
+        margin-top: 1rem;
+    }
+
+    .json {
+        max-height: 300px;
+    }
+}
