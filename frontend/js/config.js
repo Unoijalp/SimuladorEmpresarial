@@ -10,7 +10,7 @@
 //   - Producción (cualquier otro dominio, p. ej. usuario.github.io):
 //     se usa la URL pública del backend. Cámbiala en la Etapa 5.
 // =====================================================================
-const URL_API_PRODUCCION = 'https://TU-API.onrender.com';
+const URL_API_PRODUCCION = 'https://simuladorempresarial.onrender.com';
 
 const { hostname } = window.location;
 const esDesarrollo =
