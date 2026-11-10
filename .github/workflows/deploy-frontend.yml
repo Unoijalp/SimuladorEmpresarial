@@ -1,0 +1,48 @@
+# =====================================================================
+# .github/workflows/deploy-frontend.yml
+# Publica la carpeta "frontend/" en GitHub Pages cada vez que haces
+# push a la rama main con cambios en el frontend (o manualmente desde
+# la pestaña Actions). Requisito: Settings > Pages > Source = GitHub Actions.
+# =====================================================================
+name: Desplegar frontend en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/deploy-frontend.yml'
+  workflow_dispatch:
+
+# Permisos mínimos necesarios para publicar en Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Una sola publicación a la vez; no se cancela una en curso.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Empaquetar solo la carpeta frontend
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend
+
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
