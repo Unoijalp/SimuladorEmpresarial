@@ -19,10 +19,13 @@ import { esIdentificadorValido } from '../utils/sql.js';
 export const ESQUEMA_POR_DEFECTO = 'public';
 
 export const TABLAS_AUTORIZADAS = [
+  // -------------------------------------------------------------------
+  // DATOS MAESTROS
+  // -------------------------------------------------------------------
   {
     nombre: 'unidades_medida',
     descripcion:
-      'Catálogo de unidades de medida (masa, longitud, tiempo, cantidad y volumen).',
+      'Catálogo de unidades de medida (masa, longitud, tiempo, cantidad y volumen) con su factor de conversión a la unidad base.',
     escribible: false,
   },
   {
@@ -38,19 +41,66 @@ export const TABLAS_AUTORIZADAS = [
   },
   {
     nombre: 'maquinas',
-    descripcion: 'Máquinas disponibles en la planta de producción.',
+    descripcion:
+      'Máquinas disponibles en la planta, con su velocidad relativa (1 = referencia) y si están activas.',
     escribible: false,
   },
   {
     nombre: 'pedidos',
     descripcion:
-      'Pedidos de clientes (un pedido corresponde a un producto) con su tiempo de preparación.',
+      'Pedidos de clientes (un pedido = un cliente = un producto): cantidad, fecha de pedido, fecha de entrega, prioridad (peso) y tiempo de preparación.',
+    escribible: false,
+  },
+
+  // -------------------------------------------------------------------
+  // RUTAS Y TIEMPOS DE PROCESAMIENTO
+  // -------------------------------------------------------------------
+  {
+    nombre: 'operaciones_producto',
+    descripcion:
+      'Ruta de cada producto: operaciones ordenadas por secuencia, con su tiempo estándar unitario.',
     escribible: false,
   },
   {
     nombre: 'tiempos_fabricacion',
     descripcion:
-      'Tiempo unitario de fabricación de cada pedido en cada máquina.',
+      'Máquinas elegibles para cada operación y, opcionalmente, el tiempo unitario propio de cada máquina.',
+    escribible: false,
+  },
+
+  // -------------------------------------------------------------------
+  // ESCENARIOS DE SIMULACIÓN
+  // -------------------------------------------------------------------
+  {
+    nombre: 'escenarios',
+    descripcion:
+      'Escenarios de simulación y su entorno (paralelas idénticas, uniformes, no relacionadas, flowshop o jobshop).',
+    escribible: false,
+  },
+  {
+    nombre: 'escenario_pedidos',
+    descripcion: 'Pedidos que participan en cada escenario.',
+    escribible: false,
+  },
+  {
+    nombre: 'escenario_maquinas',
+    descripcion: 'Máquinas que participan en cada escenario.',
+    escribible: false,
+  },
+
+  // -------------------------------------------------------------------
+  // RESULTADOS DEL SCHEDULING
+  // -------------------------------------------------------------------
+  {
+    nombre: 'programaciones',
+    descripcion:
+      'Corridas de algoritmos de programación sobre un escenario: algoritmo, objetivo y valor obtenido.',
+    escribible: false,
+  },
+  {
+    nombre: 'programacion_asignaciones',
+    descripcion:
+      'Asignación de cada operación de cada pedido a una máquina, con su inicio y fin (en segundos).',
     escribible: false,
   },
 ];
